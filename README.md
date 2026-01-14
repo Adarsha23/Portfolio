@@ -1,19 +1,17 @@
-# Adarsha Prasai - Creative AI Developer Portfolio 🚀
+# Adarsha Prasai - Creative AI Developer Portfolio 
 
 A premium, interactive portfolio website built with **React**, **Tailwind CSS**, and **Framer Motion**. Designed for a "Creative AI Developer" persona, featuring high-end animations and smooth user experience.
 
-![Portfolio Preview](https://github.com/Adarsha23/Portfolio/raw/main/public/preview.png)
 
-## ✨ Features
+##  Features
 
 - **Interactive Particle Network**: A custom HTML5 Canvas background that responds to mouse movement, creating dynamic connections between particles and the cursor.
 - **Buttery Smooth Scroll**: Integrated with **Lenis** for a premium, eased scrolling experience similar to top-tier commercial sites.
-- **AI-Assisted Persona**: Content tailored specifically to showcase expertise in AI-driven development and modern automation workflows.
 - **Glassmorphism UI**: A sleek, dark-themed design with neon accents and frosted glass components.
 - **Working Contact Form**: Integrated with **Web3Forms** for reliable message delivery directly to my inbox.
 - **Fully Responsive**: Optimized for all devices, from desktop monitors to mobile phones.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend**: React 18, Vite
 - **Styling**: Tailwind CSS, Vanilla CSS
@@ -23,11 +21,11 @@ A premium, interactive portfolio website built with **React**, **Tailwind CSS**,
 - **Forms**: Web3Forms API
 - **Icons**: Lucide React
 
-## 🚀 Live Demo
+##  Live Demo
 
 Check out the live site here: [adarsha-portfolio-23.vercel.app](https://adarsha-portfolio-23.vercel.app/)
 
-## 📦 Installation & Setup
+##  Installation & Setup
 
 1. **Clone the repository**:
    ```bash
