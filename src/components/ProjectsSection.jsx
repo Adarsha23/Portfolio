@@ -7,7 +7,7 @@ const ProjectsSection = () => {
             title: 'Smart Pet Feeder',
             description: 'IoT-enabled smart pet feeding system with real-time monitoring, automated scheduling, and mobile control. Built with React, Supabase, and ESP32.',
             tags: ['React', 'IoT', 'Supabase', 'ESP32'],
-            link: 'https://petfeeder-gamma.vercel.app',
+            link: 'https://petfeeder-fyp-23.vercel.app/',
             github: 'https://github.com/Adarsha23/petfeeder',
             gradient: 'from-neonCyan to-blue-500',
         },
