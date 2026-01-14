@@ -9,17 +9,38 @@ const ContactSection = () => {
         message: '',
     });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Create mailto link with proper encoding
-        const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-        const body = encodeURIComponent(`${formData.message}\n\nFrom: ${formData.email}`);
-        const mailtoLink = `mailto:praaiadarsha@gmail.com?subject=${subject}&body=${body}`;
+    const [status, setStatus] = useState('');
 
-        // Create and click anchor element (more reliable than window.open)
-        const link = document.createElement('a');
-        link.href = mailtoLink;
-        link.click();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus('sending');
+
+        const formDataToSend = new FormData();
+        formDataToSend.append('access_key', '97b4750d-3b64-4351-bfe5-c9bb9280c859');
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('message', formData.message);
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formDataToSend
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus(''), 5000);
+            } else {
+                setStatus('error');
+                setTimeout(() => setStatus(''), 5000);
+            }
+        } catch (error) {
+            setStatus('error');
+            setTimeout(() => setStatus(''), 5000);
+        }
     };
 
     const handleChange = (e) => {
@@ -132,11 +153,32 @@ const ContactSection = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="w-full px-6 py-3 bg-gradient-to-r from-neonCyan to-neonPurple text-darkBg font-semibold rounded-lg transition-all flex items-center justify-center gap-2"
+                                disabled={status === 'sending'}
+                                className="w-full px-6 py-3 bg-gradient-to-r from-neonCyan to-neonPurple text-darkBg font-semibold rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <Send size={18} />
-                                Send Message
+                                {status === 'sending' ? 'Sending...' : status === 'success' ? 'Sent!' : status === 'error' ? 'Failed - Try Again' : 'Send Message'}
                             </motion.button>
+
+                            {status === 'success' && (
+                                <motion.p
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-green-400 text-sm text-center"
+                                >
+                                    ✓ Message sent successfully! I'll get back to you soon.
+                                </motion.p>
+                            )}
+
+                            {status === 'error' && (
+                                <motion.p
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-red-400 text-sm text-center"
+                                >
+                                    ✗ Something went wrong. Please try again or email me directly.
+                                </motion.p>
+                            )}
                         </form>
                     </motion.div>
 
