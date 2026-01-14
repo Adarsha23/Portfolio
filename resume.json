@@ -1,0 +1,74 @@
+{
+  "basics": {
+    "name": "Adarsha Prasai",
+    "label": "Creative AI Developer & Computer Science Student",
+    "email": "prasaiadarsha@gmail.com",
+    "phone": "9813244949",
+    "url": "https://adarsha-portfolio-23.vercel.app/",
+    "location": {
+      "city": "Budhanilkantha-13, Chunikhel",
+      "country": "Nepal"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/adarsha-prasai-637b49283/"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/Adarsha23"
+      }
+    ]
+  },
+  "summary": "Ambitious Front-End Developer with a focus on AI-assisted development. Specialized in building high-performance, visually stunning web experiences by bridging traditional software engineering with cutting-edge AI tools. Dedicated team player with a strong work ethic and a passion for full-stack excellence.",
+  "skills": [
+    {
+      "name": "Frontend",
+      "keywords": ["React", "Vite", "Tailwind CSS", "Framer Motion", "JavaScript"]
+    },
+    {
+      "name": "Backend & Cloud",
+      "keywords": ["Supabase", "Firebase", "AWS", "n8n Automation", "PHP"]
+    },
+    {
+      "name": "Programming",
+      "keywords": ["Python", "Java", "C/C++", "C# (Unity)"]
+    },
+    {
+      "name": "AI Specialization",
+      "keywords": ["AI Integration", "Prompt Engineering", "ML Models", "Automated Workflows"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Smart Pet Feeder",
+      "description": "IoT-enabled smart feeding system with real-time monitoring and automated scheduling.",
+      "url": "https://petfeeder-fyp-23.vercel.app/",
+      "keywords": ["React", "Supabase", "ESP32", "IoT"]
+    },
+    {
+      "name": "LaunchBox AI Integration",
+      "description": "A sophisticated message integration platform built using n8n and AI for automated communication.",
+      "keywords": ["n8n", "AI", "Automation"]
+    },
+    {
+      "name": "Twin Tower 9/11 Re-Simulation",
+      "description": "Realistic physics-based crash simulation built for educational analysis.",
+      "keywords": ["Unity", "C#", "Physics Engine"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Wolverhampton",
+      "area": "BSc (Hons) in Computer Science",
+      "score": "Expected 2026",
+      "date": "2023 - Present"
+    },
+    {
+      "institution": "Kist College & SS",
+      "area": "Management / High School",
+      "score": "GPA: 3.x",
+      "date": "Graduated 2023"
+    }
+  ]
+}

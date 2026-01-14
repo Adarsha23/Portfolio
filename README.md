@@ -23,7 +23,10 @@ A premium, interactive portfolio website built with **React**, **Tailwind CSS**,
 
 ##  Live Demo
 
-Check out the live site here: [adarsha-portfolio-23.vercel.app](https://adarsha-portfolio-23.vercel.app/)
+Check out the live sites here:
+- **Portfolio**: [adarsha-portfolio-23.vercel.app](https://adarsha-portfolio-23.vercel.app/)
+- **Smart Pet Feeder**: [petfeeder-fyp-23.vercel.app](https://petfeeder-fyp-23.vercel.app/)
+
 
 ##  Installation & Setup
 
