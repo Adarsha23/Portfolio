@@ -1,6 +1,6 @@
 # Adarsha Prasai - Creative AI Developer Portfolio 
 
-A premium, interactive portfolio website built with **React**, **Tailwind CSS**, and **Framer Motion**. Designed for a "Creative AI Developer" persona, featuring high-end animations and smooth user experience.
+My personal Portfolio website thing
 
 
 ##  Features
@@ -25,7 +25,6 @@ A premium, interactive portfolio website built with **React**, **Tailwind CSS**,
 
 Check out the live sites here:
 - **Portfolio**: [adarsha-portfolio-23.vercel.app](https://adarsha-portfolio-23.vercel.app/)
-- **Smart Pet Feeder**: [petfeeder-fyp-23.vercel.app](https://petfeeder-fyp-23.vercel.app/)
 
 
 ##  Installation & Setup
@@ -59,4 +58,4 @@ Check out the live sites here:
 - **Email**: [praaiadarsha@gmail.com](mailto:praaiadarsha@gmail.com)
 
 ---
-Built with 💙 by Adarsha Prasai
+ferr
