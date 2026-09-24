@@ -3,6 +3,9 @@ import Hero from "@/components/Hero";
 import Peel from "@/components/Peel";
 import Relay from "@/components/Relay";
 import Corpsec from "@/components/Corpsec";
+import About from "@/components/About";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 
 export default function Home() {
@@ -15,7 +18,10 @@ export default function Home() {
         <Peel />
         <Relay />
         <Corpsec />
+        <About />
+        <Contact />
       </main>
+      <Footer />
       <CommandPalette />
     </>
   );
