@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Peel from "@/components/Peel";
 import Relay from "@/components/Relay";
+import Corpsec from "@/components/Corpsec";
 import CommandPalette from "@/components/CommandPalette";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
         <Peel />
         <Relay />
+        <Corpsec />
       </main>
       <CommandPalette />
     </>
