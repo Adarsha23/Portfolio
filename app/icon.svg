@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#ffd23f" />
+  <!-- one plain eye, one googly eye: maximum derp -->
+  <circle cx="11" cy="12.5" r="2.3" fill="#1c1a17" />
+  <circle cx="21" cy="12" r="3.3" fill="#fff" stroke="#1c1a17" stroke-width="1.6" />
+  <circle cx="22" cy="12.6" r="1.2" fill="#1c1a17" />
+  <!-- wonky open grin + a little tongue blep -->
+  <path d="M9.5 19 q6.5 7 13 0.5" fill="none" stroke="#1c1a17" stroke-width="2" stroke-linecap="round" />
+  <rect x="15.5" y="22.5" width="4.6" height="4.2" rx="2.1" fill="#e4572e" />
+</svg>

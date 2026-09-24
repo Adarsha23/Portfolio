@@ -1,0 +1,484 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  Comic-book theme — ink on comic paper, marigold caption boxes,
+ *  a red pop for action. Light only.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #f4eddc; /* comic-page cream */
+  --color-paper-2: #fffdf6; /* panel white */
+  --color-ink: #16130f; /* inked black */
+  --color-ink-soft: #4a453d; /* secondary text, ~8:1 */
+  --color-ink-mute: #857e72;
+  --color-rule: rgba(22, 19, 15, 0.16);
+  --color-marker: #ffd23f; /* comic yellow (caption boxes) */
+  --color-marker-2: #fbbf24;
+  --color-pop: #d92d24; /* comic red accent (AA on cream) */
+  --color-amber: #8a5a00; /* readable amber for accent text on cream */
+  --color-live: #2fbd77;
+  --color-live-ink: #0c7346;
+  --color-night: #16130f; /* code blocks / dark surfaces */
+  --color-night-ink: #f4efe2;
+  --glow: 255, 210, 63;
+
+  --font-display: var(--font-bangers), "Comic Sans MS", cursive;
+  --font-body: var(--font-comic), "Comic Sans MS", system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ink-border: 2.5px solid var(--color-ink);
+  --shadow-hard: 5px 5px 0 var(--color-ink);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    /* faint ben-day halftone across the page */
+    background-image: radial-gradient(rgba(22, 19, 15, 0.05) 1px, transparent 1.3px);
+    background-size: 9px 9px;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.075rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-marker);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .on-night :focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  code,
+  .mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* comic keycap */
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    line-height: 1;
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+    border: 2px solid var(--color-ink);
+    border-radius: 5px;
+    padding: 0.2em 0.42em;
+    box-shadow: 2px 2px 0 var(--color-ink);
+    white-space: nowrap;
+  }
+  .on-night kbd {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-night-ink);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Type + comic building blocks
+ * ------------------------------------------------------------------ */
+@layer components {
+  .t-display {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 1.4rem + 7vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+  }
+  .t-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 1.4rem + 3.2vw, 3.4rem);
+    letter-spacing: 0.02em;
+  }
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 1.3rem + 1.8vw, 2.4rem);
+    letter-spacing: 0.02em;
+  }
+  .t-lead {
+    font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.45rem);
+    line-height: 1.45;
+  }
+  .measure {
+    max-width: 62ch;
+  }
+  .measure-tight {
+    max-width: 52ch;
+  }
+
+  .data {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-soft);
+  }
+
+  /* comic panel: hard black border + hard offset shadow */
+  .panel {
+    background: var(--color-paper-2);
+    border: var(--ink-border);
+    border-radius: 6px;
+    box-shadow: var(--shadow-hard);
+  }
+
+  /* comic caption / narration box (the yellow tag) */
+  .kicker {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    background: var(--color-marker);
+    border: 2px solid var(--color-ink);
+    border-radius: 3px;
+    padding: 0.15em 0.6em;
+    box-shadow: 2px 2px 0 var(--color-ink);
+    transform: rotate(-1.2deg);
+  }
+
+  /* halftone accent block */
+  .halftone {
+    background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.4px);
+    background-size: 7px 7px;
+    opacity: 0.9;
+  }
+
+  /* comic speech bubble with a downward tail */
+  .bubble {
+    position: relative;
+    display: inline-block;
+    background: var(--color-paper-2);
+    border: 2px solid var(--color-ink);
+    border-radius: 14px;
+    padding: 0.55em 0.9em;
+    box-shadow: 3px 3px 0 var(--color-ink);
+  }
+  .bubble::after,
+  .bubble::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  .bubble::after {
+    left: 28px;
+    bottom: -13px;
+    border-width: 13px 11px 0 0;
+    border-color: var(--color-ink) transparent transparent transparent;
+  }
+  .bubble::before {
+    left: 30px;
+    bottom: -9px;
+    border-width: 10px 8px 0 0;
+    border-color: var(--color-paper-2) transparent transparent transparent;
+    z-index: 1;
+  }
+
+  /* comic starburst badge (POW! sticker) */
+  .starburst {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    aspect-ratio: 1;
+    color: var(--color-paper-2);
+    background: var(--color-pop);
+    font-family: var(--font-display);
+    line-height: 0.9;
+    padding: 14%;
+    clip-path: polygon(
+      50% 0%, 60% 16%, 79% 9%, 74% 29%, 95% 30%, 80% 45%, 100% 56%, 79% 62%,
+      88% 82%, 66% 76%, 62% 98%, 47% 80%, 30% 94%, 30% 71%, 8% 73%, 24% 56%,
+      2% 44%, 24% 39%, 13% 19%, 34% 26%
+    );
+    transform: rotate(-8deg);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Marker highlight — dark text on a marigold swipe
+ * ------------------------------------------------------------------ */
+@layer components {
+  .mark {
+    color: var(--color-ink);
+    background-image: linear-gradient(
+      101deg,
+      rgba(255, 210, 63, 0.2),
+      rgba(255, 210, 63, 0.95) 5%,
+      rgba(255, 210, 63, 0.6) 96%,
+      rgba(255, 210, 63, 0.22)
+    );
+    background-repeat: no-repeat;
+    background-position: 0 82%;
+    background-size: 100% 42%;
+    border-radius: 0.7em 0.28em 0.6em 0.3em;
+    padding: 0.02em 0.1em;
+    margin: 0 -0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .mark-draw {
+        background-size: 0% 42%;
+        animation: mark-draw linear both;
+        animation-timeline: view();
+        animation-range: entry 12% cover 34%;
+      }
+    }
+  }
+  @keyframes mark-draw {
+    to {
+      background-size: 100% 42%;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Custom cursor — a ring that trails, a dot that leads.
+ *  Over an embed it parks by the search box and native cursor returns.
+ * ------------------------------------------------------------------ */
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor [role="button"],
+body.has-custom-cursor summary,
+body.has-custom-cursor label {
+  cursor: none;
+}
+body.cursor-parked,
+body.cursor-parked * {
+  cursor: auto !important;
+}
+body.cursor-parked .cursor-dot {
+  opacity: 0;
+}
+.cursor-ring,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 9999px;
+  will-change: transform;
+  opacity: 0;
+}
+body.has-custom-cursor .cursor-ring,
+body.has-custom-cursor .cursor-dot {
+  opacity: 1;
+}
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 2px solid var(--color-ink);
+  transition:
+    width 0.2s var(--ease-out),
+    height 0.2s var(--ease-out),
+    margin 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out);
+}
+.cursor-ring.is-hover {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  background: rgba(255, 210, 63, 0.25);
+}
+.cursor-ring.is-down {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--color-ink);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Hero
+ * ------------------------------------------------------------------ */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(55% 45% at 50% 40%, rgba(var(--glow), 0.22), transparent 70%);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Scroll progress + reveals
+ * ------------------------------------------------------------------ */
+@layer components {
+  .scroll-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 4px;
+    z-index: 50;
+    background: var(--color-pop);
+    border-bottom: 1.5px solid var(--color-ink);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    pointer-events: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-progress {
+        animation: progress linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+  @keyframes progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 20%;
+      }
+    }
+  }
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.4rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Peel sticky notes
+ * ------------------------------------------------------------------ */
+@property --pop {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+@layer components {
+  .peel-board {
+    background: var(--color-paper-2);
+    border: var(--ink-border);
+    border-radius: 6px;
+    box-shadow: var(--shadow-hard);
+  }
+  .peel-note {
+    border: 2px solid var(--color-ink);
+    box-shadow: 3px 3px 0 rgba(22, 19, 15, 0.5);
+  }
+  .peel-note[data-dragging="true"] {
+    box-shadow: 7px 9px 0 rgba(22, 19, 15, 0.45);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .peel-note {
+      animation: note-pop 0.34s var(--ease-out);
+    }
+    @keyframes note-pop {
+      from {
+        opacity: 0;
+        --pop: 0.9;
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Command palette
+ * ------------------------------------------------------------------ */
+@layer components {
+  .cmdk {
+    margin: 12vh auto auto;
+    width: min(40rem, calc(100vw - 2rem));
+    padding: 0;
+    border: var(--ink-border);
+    border-radius: 8px;
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+    box-shadow: 8px 8px 0 var(--color-ink);
+    overflow: hidden;
+  }
+  .cmdk::backdrop {
+    background: rgba(22, 19, 15, 0.4);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .cmdk[open] {
+      animation: cmdk-in 0.16s var(--ease-out);
+    }
+    @keyframes cmdk-in {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reduced-motion safety net
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
