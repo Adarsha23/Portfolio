@@ -1,10 +1,14 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 import CommandPalette from "@/components/CommandPalette";
 
 export default function Home() {
   return (
     <>
-      <main className="grid min-h-screen place-items-center px-6 text-center">
-        <h1 className="t-display">Adarsha Prasai</h1>
+      <div className="scroll-progress" aria-hidden="true" />
+      <Header />
+      <main>
+        <Hero />
       </main>
       <CommandPalette />
     </>
