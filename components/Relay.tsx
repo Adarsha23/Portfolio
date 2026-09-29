@@ -50,9 +50,10 @@ export default function Relay() {
         <p className="measure mt-8 text-[1.1rem]">
           Relay looks like a Linear-lite issue tracker. The real project is{" "}
           <span className="mark mark-draw">the sync engine underneath</span>. Every create, edit, and
-          delete reaches every open client over a websocket, with live presence, optimistic updates
-          that roll back on rejection, and an offline queue that reconciles on reconnect. CRUD is the
-          easy part. The interesting part is what one edit does after you let go of it.
+          delete reaches every open client over a websocket, with live presence and optimistic
+          updates that roll back on rejection. Convex keeps the connection alive and replays queued
+          edits after a drop; the part I owned is the optimistic layer on top. CRUD is the easy part.
+          The interesting part is what one edit does after you let go of it.
         </p>
 
         {/* the live demo */}
@@ -98,12 +99,11 @@ export default function Relay() {
             </h3>
             <p className="mt-3 text-[var(--color-ink-soft)]">
               The worst bug an optimistic UI can have is lying to you. I show your change before the
-              server confirms it, which is great until the server rejects it or your wifi dies
-              mid-edit. So every optimistic change keeps its pre-change value and rolls back to exactly
-              what the server believes if the mutation fails. Drop the connection and edits queue
-              locally, then flush in order on reconnect and reconcile against whatever moved while you
-              were gone. The websocket was never the hard part. Reconciling two versions of the truth
-              was.
+              server confirms it, which is great until the server rejects it. So every optimistic
+              change keeps its pre-change value and snaps back to exactly what the server believes if
+              the mutation fails. Convex handles the unglamorous half: it keeps the socket alive,
+              replays queued mutations on reconnect, and lets its results overwrite stale local state.
+              The websocket was never the hard part. Keeping the optimistic layer honest was.
             </p>
           </div>
           <pre className="mono overflow-x-auto rounded-lg border border-[var(--color-rule)] bg-[var(--color-night)] p-4 text-[0.78rem] leading-relaxed text-[var(--color-night-ink)]">
